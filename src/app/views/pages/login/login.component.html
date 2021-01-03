@@ -1,0 +1,41 @@
+<mat-card class="users-card">
+  <mat-card-header>
+    <mat-card-title>
+      <img
+        src="http://192.168.31.103:8097/web/assets/img/banner-dark.png"
+        alt=""
+        srcset=""
+        width="150px"
+      />
+    </mat-card-title>
+    <!-- <mat-card-subtitle>Please sign in</mat-card-subtitle> -->
+  </mat-card-header>
+  <app-login-card *ngIf="(users$ | async)"></app-login-card>
+  <mat-card-content *ngIf="users$ | async as _users">
+    <mat-card *ngFor="let user of _users" class="user-image">
+      <img
+        *ngIf="user.PrimaryImageTag"
+        [src]="
+          'http://192.168.31.103:8097/Users/' +
+          user.Id +
+          '/Images/Primary?width=300&tag=' +
+          user.PrimaryImageTag +
+          '&quality=90'
+        "
+        [alt]="user.Name + '\'s profile picture.'"
+      />
+      <img
+        *ngIf="!user.PrimaryImageTag"
+        src="http://192.168.31.103:8097/web/assets/img/avatar.png"
+        width="300"
+        style="background-color: red"
+        alt=""
+      />
+      <b>{{ user.Name }}</b>
+    </mat-card>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Manual Login</button>
+    <button mat-raised-button color="warn">Forgot Password</button>
+  </mat-card-actions>
+</mat-card>

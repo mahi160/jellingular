@@ -1,0 +1,48 @@
+.users-card {
+  margin: auto;
+  width: 40%;
+  .mat-card-header {
+    display: flex;
+    place-content: center;
+  }
+  .mat-card-content {
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    .user-image {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 180px;
+      margin: 10px;
+      cursor: pointer;
+      img {
+        width: 100%;
+        border: 2px solid red;
+        border-radius: 50%;
+      }
+      b {
+        margin-top: 10px;
+      }
+    }
+  }
+  .mat-card-actions {
+    display: flex;
+    place-content: center;
+    margin-bottom: 10px;
+    .mat-raised-button {
+      width: 40%;
+      height: 48px;
+    }
+  }
+}
+
+.login-card {
+  margin: 5% auto;
+  width: 40%;
+  .mat-card-header {
+    display: flex;
+    place-content: center;
+  }
+}

@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // port: '8097',
+  // url: 'http://192.168.31.103:8097',
+  serverApi: 'http://192.168.31.103:8097',
+  // constructor() {
+  //   this.serverApi = this.url + ':' + this.port;
+  // },
 };
 
 /*
