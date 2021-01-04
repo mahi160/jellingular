@@ -16,7 +16,7 @@ export class LoginCardComponent implements OnInit {
   constructor(private userService: UsersService) {}
 
   ngOnInit(): void {}
-  submitLogin() {
+  submitLogin(): void {
     console.log(this.loginCredential.value);
 
     const user: UserLogin = this.loginCredential.value;
