@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './views/pages/login/login.component';
+import { SelectServerComponent } from './views/pages/select-server/select-server.component';
 
 const routes: Routes = [
   {
@@ -9,9 +10,13 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/login',
-    pathMatch:'full'
-  }
+    redirectTo: '/select-server',
+    pathMatch: 'full',
+  },
+  {
+    path: 'select-server',
+    component: SelectServerComponent,
+  },
 ];
 
 @NgModule({

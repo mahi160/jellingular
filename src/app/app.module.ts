@@ -7,9 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { LoginModule } from './views/pages/login/login.module';
+import { SelectServerComponent } from './views/pages/select-server/select-server.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SelectServerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

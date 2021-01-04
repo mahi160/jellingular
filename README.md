@@ -25,3 +25,18 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# API
+
+## GET
+
+- http://192.168.31.103:8097/web/config.json
+- http://192.168.31.103:8097/System/Info/Public
+- http://192.168.31.103:8097/QuickConnect/Status
+- http://192.168.31.103:8097/Branding/Configuration
+- http://192.168.31.103:8097/Users/userId/Views?api=de30162a665b4a31862e264507132618
+
+## POST
+
+- http://192.168.31.103:8097/Users/authenticatebyname
+- http://192.168.31.103:8097/Sessions/Capabilities/Full

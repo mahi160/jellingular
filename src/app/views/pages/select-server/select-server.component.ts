@@ -1,0 +1,32 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from './../../../services/users.service';
+
+@Component({
+  selector: 'app-select-server',
+  templateUrl: './select-server.component.html',
+  styleUrls: ['./select-server.component.scss'],
+})
+export class SelectServerComponent implements OnInit {
+  server = new FormGroup({
+    serverUrl: new FormControl('http://192.168.31.103', Validators.required),
+    port: new FormControl('8096', Validators.required),
+    authApi: new FormControl(
+      'de30162a665b4a31862e264507132618',
+      Validators.required
+    ),
+  });
+  constructor(private userService: UsersService) {}
+
+  ngOnInit(): void {}
+  onSubmit(): void {
+    console.log(this.server.controls.authApi.value);
+
+    // let apiKey = this.server.get('authApi').value;
+    this.userService
+      .getAllUsers(this.server.controls.authApi.value)
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
+}

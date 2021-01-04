@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserLogin } from 'src/app/models/user.model';
@@ -9,6 +9,7 @@ import { usersApi } from './../models/api.model';
   providedIn: 'root',
 })
 export class UsersService {
+  // apiKey = localStorage.getItem('apiKey');
   // httpHeaders = new HttpHeaders({
   //   'Content-Type': 'application/json',
   //   'Cache-Control': 'no-cache',
@@ -17,6 +18,15 @@ export class UsersService {
   getPublicUser(): Observable<any> {
     return this.http.get<any>(
       `${environment.serverApi}/${usersApi.publicUserList}`
+    );
+  }
+  getAllUsers(apiKey: string): Observable<any> {
+    const options = {
+      params: new HttpParams({ fromString: `api_key=${apiKey}` }),
+    };
+    return this.http.get<any>(
+      `${environment.serverApi}/${usersApi.allUsers}`,
+      options
     );
   }
 

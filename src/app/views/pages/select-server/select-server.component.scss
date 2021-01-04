@@ -1,0 +1,31 @@
+.server-select-card {
+  margin: auto;
+  width: 40%;
+  margin-top: 5%;
+  .mat-card-header {
+    display: flex;
+    place-content: center;
+  }
+  .mat-card-content {
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    margin-top: 20px;
+    form {
+      display: flex;
+      place-content: center;
+      flex-direction: column;
+      margin: 20px auto;
+      width: 80%;
+    }
+  }
+  .mat-card-actions {
+    display: flex;
+    place-content: center;
+    margin-bottom: 10px;
+    .mat-raised-button {
+      width: 40%;
+      height: 48px;
+    }
+  }
+}
