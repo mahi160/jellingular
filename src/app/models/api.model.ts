@@ -1,3 +1,6 @@
+
+
 export const usersApi = {
-  publicUserList: 'users/public'
-}
+  publicUserList: 'users/public',
+  userAuth: 'Users/authenticatebyname',
+};
