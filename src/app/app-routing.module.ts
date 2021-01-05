@@ -1,3 +1,4 @@
+import { HomeComponent } from './views/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './views/pages/login/login.component';
@@ -5,8 +6,8 @@ import { SelectServerComponent } from './views/pages/select-server/select-server
 
 const routes: Routes = [
   {
-    path: 'login/:api',
-    component: LoginComponent,
+    path: 'select-server',
+    component: SelectServerComponent,
   },
   {
     path: '',
@@ -14,8 +15,12 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'select-server',
-    component: SelectServerComponent,
+    path: 'login/:api',
+    component: LoginComponent,
+  },
+  {
+    path: 'view/:userId',
+    component: HomeComponent,
   },
 ];
 

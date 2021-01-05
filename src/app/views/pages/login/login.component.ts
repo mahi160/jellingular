@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.users$ = this.userService.getAllUsers(this.route.snapshot.params.api);
+    this.users$.subscribe((res) => console.log(res));
   }
 
   ngOnInit(): void {}
