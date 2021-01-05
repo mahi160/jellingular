@@ -1,1 +1,35 @@
-<p>folder works!</p>
+<div *ngIf="folderData$ | async as _folder">
+  <h1>{{ _folder.Name }}</h1>
+  <table *ngIf="folderItem$ | async as _items">
+    <thead>
+      <!-- <th>Image</th> -->
+      <th>ID</th>
+      <th>Name of the movie</th>
+      <th>PremiereDate</th>
+      <th>OfficialRating</th>
+      <th>CommunityRating</th>
+      <th>ProductionYear</th>
+      <th>RunTimeTicks</th>
+      <th>PlaybackPositionTicks</th>
+      <th>Played</th>
+      <th>Watched</th>
+      <th>Key</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of _items.Items">
+        <!-- <td><img [src]="['/Images/Primary?maxHeight=326&maxWidth=217&tag=adb2e3a177081a93ea1899dbdb96a126&quality=90']" alt=""></td> -->
+        <td>{{item.Id}}</td>
+        <td>{{ item.Name }}</td>
+        <td>{{ item.PremiereDate | date }}</td>
+        <td>{{ item.OfficialRating }}</td>
+        <td>{{ item.CommunityRating }}</td>
+        <td>{{ item.ProductionYear }}</td>
+        <td>{{ item.RunTimeTicks | tickToTime }}</td>
+        <td>{{ item.UserData.PlaybackPositionTicks | tickToTime }}</td>
+        <td>{{ item.UserData.PlayCount }} Times</td>
+        <td>{{ item.UserData.Played }}</td>
+        <td>{{ item.UserData.key }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

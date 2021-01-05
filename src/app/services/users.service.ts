@@ -20,13 +20,21 @@ export class UsersService {
     return this.http.get(`${usersApi.views}`);
   }
 
-  folder(itemId: string): Observable<any> {
+  folderItems(itemId: string): Observable<any> {
     const options = {
       params: new HttpParams({
         fromString: `api_key=${localStorage.getItem('api')}&parentId=${itemId}`,
       }),
     };
     return this.http.get(`${usersApi.folder}`, options);
+  }
+  folder(itemId: string): Observable<any> {
+    const options = {
+      params: new HttpParams({
+        fromString: `api_key=${localStorage.getItem('api')}`,
+      }),
+    };
+    return this.http.get(`${usersApi.folder}/${itemId}`, options);
   }
 
   authUserLogin(user: UserLogin): Observable<UserLogin> {

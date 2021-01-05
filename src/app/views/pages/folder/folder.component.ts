@@ -1,6 +1,7 @@
-import { ActivatedRoute } from '@angular/router';
-import { UsersService } from './../../../services/users.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { UsersService } from './../../../services/users.service';
 
 @Component({
   selector: 'app-folder',
@@ -8,17 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./folder.component.scss'],
 })
 export class FolderComponent implements OnInit {
+  folderData$!: Observable<any>;
+  folderItem$!: Observable<any>;
+
   constructor(
     private userService: UsersService,
     private route: ActivatedRoute
   ) {
-    console.log(this.route.snapshot);
-
-    this.userService
-      .folder(this.route.snapshot.params.folderId)
-      .subscribe((res) => {
-        console.log(res);
-      });
+    const id = this.route.snapshot.params.folderId;
+    this.folderItem$ = this.userService.folderItems(id);
+    this.folderData$ = this.userService.folder(id);
   }
 
   ngOnInit(): void {}

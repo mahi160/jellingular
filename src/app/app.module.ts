@@ -10,9 +10,10 @@ import { HomeComponent } from './views/pages/home/home.component';
 import { LoginModule } from './views/pages/login/login.module';
 import { SelectServerComponent } from './views/pages/select-server/select-server.component';
 import { FolderComponent } from './views/pages/folder/folder.component';
+import { TickToTimePipe } from './pipes/tick-to-time.pipe';
 
 @NgModule({
-  declarations: [AppComponent, SelectServerComponent, HomeComponent, FolderComponent],
+  declarations: [AppComponent, SelectServerComponent, HomeComponent, FolderComponent, TickToTimePipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
