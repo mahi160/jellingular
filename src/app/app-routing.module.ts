@@ -5,7 +5,7 @@ import { SelectServerComponent } from './views/pages/select-server/select-server
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: 'login/:api',
     component: LoginComponent,
   },
   {

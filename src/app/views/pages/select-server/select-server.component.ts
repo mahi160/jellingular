@@ -16,17 +16,15 @@ export class SelectServerComponent implements OnInit {
       Validators.required
     ),
   });
+  url = `/login/${this.server.controls.authApi.value}`;
   constructor(private userService: UsersService) {}
 
   ngOnInit(): void {}
   onSubmit(): void {
-    console.log(this.server.controls.authApi.value);
-
-    // let apiKey = this.server.get('authApi').value;
-    this.userService
-      .getAllUsers(this.server.controls.authApi.value)
-      .subscribe((res) => {
-        console.log(res);
-      });
+    // this.userService
+    //   .getAllUsers(this.server.controls.authApi.value)
+    //   .subscribe((res) => {
+    //     console.log(res);
+    //   });
   }
 }

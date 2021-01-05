@@ -9,11 +9,6 @@ import { usersApi } from './../models/api.model';
   providedIn: 'root',
 })
 export class UsersService {
-  // apiKey = localStorage.getItem('apiKey');
-  // httpHeaders = new HttpHeaders({
-  //   'Content-Type': 'application/json',
-  //   'Cache-Control': 'no-cache',
-  // });
   constructor(private http: HttpClient) {}
   getPublicUser(): Observable<any> {
     return this.http.get<any>(
@@ -31,14 +26,6 @@ export class UsersService {
   }
 
   authUserLogin(user: UserLogin): Observable<UserLogin> {
-    // let httpHeaders = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   'Cache-Control': 'no-cache',
-
-    // });
-    // let options = {
-    //   headers: httpHeaders,
-    // };
     return this.http.post<UserLogin>(
       `${environment.serverApi}/${usersApi.userAuth}`,
       user

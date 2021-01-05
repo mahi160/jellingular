@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UsersService } from './../../../services/users.service';
 
@@ -10,11 +11,11 @@ import { UsersService } from './../../../services/users.service';
 export class LoginComponent implements OnInit {
   users$!: Observable<any>;
   manualLogin = false;
-  constructor(private userService: UsersService) {
-    this.users$ = this.userService.getPublicUser();
-    if (!this.users$) {
-      this.manualLogin = true;
-    }
+  constructor(
+    private userService: UsersService,
+    private route: ActivatedRoute
+  ) {
+    this.users$ = this.userService.getAllUsers(this.route.snapshot.params.api);
   }
 
   ngOnInit(): void {}

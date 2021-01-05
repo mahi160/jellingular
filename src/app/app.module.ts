@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { LoginModule } from './views/pages/login/login.module';
 import { SelectServerComponent } from './views/pages/select-server/select-server.component';
+import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, SelectServerComponent],
+  declarations: [AppComponent, SelectServerComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -10,10 +10,14 @@
     </mat-card-title>
     <!-- <mat-card-subtitle>Please sign in</mat-card-subtitle> -->
   </mat-card-header>
-  <app-login-card *ngIf="manualLogin"></app-login-card>
+  <!-- <app-login-card *ngIf="manualLogin"></app-login-card> -->
   <div *ngIf="users$ | async as _users" [hidden]="manualLogin">
     <mat-card-content>
-      <mat-card *ngFor="let user of _users" class="user-image">
+      <mat-card
+        *ngFor="let user of _users"
+        class="user-image"
+        routerLink="/views/user.id"
+      >
         <img
           *ngIf="user.PrimaryImageTag"
           [src]="
@@ -35,11 +39,11 @@
         <b>{{ user.Name }}</b>
       </mat-card>
     </mat-card-content>
-    <mat-card-actions>
+    <!-- <mat-card-actions>
       <button mat-raised-button color="primary" (click)="showManual()">
         Manual Login
       </button>
       <button mat-raised-button color="warn">Forgot Password</button>
-    </mat-card-actions>
+    </mat-card-actions> -->
   </div>
 </mat-card>
