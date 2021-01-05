@@ -2,7 +2,7 @@
   <button
     mat-stroked-button
     *ngFor="let item of _view.Items"
-    [routerLink]="['/folder/' + item.parentId]"
+    [routerLink]="['/folder/' + item.Id]"
   >
     {{ item.Name }}
   </button>
