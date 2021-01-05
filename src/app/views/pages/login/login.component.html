@@ -16,7 +16,8 @@
       <mat-card
         *ngFor="let user of _users"
         class="user-image"
-        [routerLink]="['/view/' + user.Id]"
+        routerLink="/view"
+        (click)="onSelect(user.Id)"
       >
         <img
           *ngIf="user.PrimaryImageTag"

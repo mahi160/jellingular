@@ -15,12 +15,15 @@ export class LoginComponent implements OnInit {
     private userService: UsersService,
     private route: ActivatedRoute
   ) {
-    this.users$ = this.userService.getAllUsers(this.route.snapshot.params.api);
+    this.users$ = this.userService.getAllUsers();
     this.users$.subscribe((res) => console.log(res));
   }
 
   ngOnInit(): void {}
   showManual(): void {
     this.manualLogin = true;
+  }
+  onSelect(id: string): void {
+    localStorage.setItem('user', id);
   }
 }

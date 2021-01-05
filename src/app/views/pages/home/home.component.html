@@ -1,0 +1,9 @@
+<div *ngIf="viewData$ | async as _view">
+  <button
+    mat-stroked-button
+    *ngFor="let item of _view.Items"
+    [routerLink]="['/folder/' + item.parentId]"
+  >
+    {{ item.Name }}
+  </button>
+</div>

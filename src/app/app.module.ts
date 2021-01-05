@@ -6,12 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
+import { HomeComponent } from './views/pages/home/home.component';
 import { LoginModule } from './views/pages/login/login.module';
 import { SelectServerComponent } from './views/pages/select-server/select-server.component';
-import { HomeComponent } from './views/home/home.component';
+import { FolderComponent } from './views/pages/folder/folder.component';
 
 @NgModule({
-  declarations: [AppComponent, SelectServerComponent, HomeComponent],
+  declarations: [AppComponent, SelectServerComponent, HomeComponent, FolderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

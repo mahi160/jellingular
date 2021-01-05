@@ -10,7 +10,7 @@ import { UsersService } from './../../../services/users.service';
 export class SelectServerComponent implements OnInit {
   server = new FormGroup({
     serverUrl: new FormControl('http://192.168.31.103', Validators.required),
-    port: new FormControl('8096', Validators.required),
+    port: new FormControl('8097', Validators.required),
     authApi: new FormControl(
       'de30162a665b4a31862e264507132618',
       Validators.required
@@ -21,6 +21,13 @@ export class SelectServerComponent implements OnInit {
 
   ngOnInit(): void {}
   onSubmit(): void {
+    localStorage.setItem('api', this.server.controls.authApi.value);
+    localStorage.setItem(
+      'url',
+      this.server.controls.serverUrl.value +
+        ':' +
+        this.server.controls.port.value
+    );
     // this.userService
     //   .getAllUsers(this.server.controls.authApi.value)
     //   .subscribe((res) => {
