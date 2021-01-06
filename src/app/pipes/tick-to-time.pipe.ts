@@ -1,3 +1,6 @@
+/**
+ * All the custom pipes are added here
+ */
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
