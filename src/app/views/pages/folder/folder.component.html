@@ -1,5 +1,6 @@
-<div *ngIf="folderData$ | async as _folder">
+<div *ngIf="folderData$ | async as _folder" class="items">
   <h1>{{ _folder.Name }}</h1>
+  <h3>Total {{ total }} {{ _folder.CollectionType | titlecase }}</h3>
   <table
     mat-table
     #table
@@ -15,17 +16,23 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ item }}</th>
       <td mat-cell *matCellDef="let row">
         <span *ngIf="i == 0 || i == 2 || i == 3 || i == 4">
-          {{ row[item] }}
+          {{ row[item] ? row[item] : "-" }}
         </span>
-        <span *ngIf="i == 1">{{ row[item] | date }}</span>
-        <span *ngIf="i == 5">{{ row[item] | tickToTime }}</span>
-        <span *ngIf="i == 6">{{ row.UserData[item] | tickToTime }}</span>
+        <span *ngIf="i == 1">{{ row[item] ? (row[item] | date) : "-" }}</span>
+        <span *ngIf="i == 5">
+          {{ row[item] ? (row[item] | tickToTime) : "0hr 0min" }}
+        </span>
+        <span *ngIf="i == 6">
+          {{
+            row.UserData[item] ? (row.UserData[item] | tickToTime) : "0hr 0min"
+          }}
+        </span>
         <span *ngIf="i == 7 || i == 8 || i == 9">
           {{ row.UserData[item] }}
         </span>
       </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
   </table>
   <!-- <mat-paginator

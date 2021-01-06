@@ -1,4 +1,19 @@
-table {
-  width: 80% !important;
-  margin: auto;
+.items{
+  padding: 20px;
+  h1,h3{
+    text-align: center;
+  }
+  table {
+    width: 1500px !important;
+    margin: auto;
+    th {
+      div {
+        justify-content: center !important;
+      }
+    }
+    td {
+      text-align: start;
+    }
+  }
+
 }

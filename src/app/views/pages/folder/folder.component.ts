@@ -30,6 +30,7 @@ export class FolderComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  total: any;
   constructor(
     private userService: UsersService,
     private route: ActivatedRoute
@@ -40,14 +41,16 @@ export class FolderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.folderItem$.subscribe((res) => {
-      for (let i = 0; i < Math.ceil(res.Items.length / 25); i++) {
-        this.pageOptions.push(25 * (i + 1));
-        console.log(this.pageOptions);
-      }
-      this.dataSource = new MatTableDataSource(res.Items);
-      // this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+    this.folderItem$
+      .subscribe((res) => {
+        for (let i = 0; i < Math.ceil(res.Items.length / 25); i++) {
+          this.pageOptions.push(25 * (i + 1));
+          console.log(this.pageOptions);
+        }
+        this.total = res.Items.length;
+        this.dataSource = new MatTableDataSource(res.Items);
+        // this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      })
   }
 }
