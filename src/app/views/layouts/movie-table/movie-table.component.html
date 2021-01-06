@@ -1,0 +1,31 @@
+<table
+  mat-table
+  #table
+  [dataSource]="dataSource"
+  matSort
+  class="mat-elevation-z8"
+>
+  <ng-container
+    *ngFor="let item of displayColumns; let i = index"
+    [matColumnDef]="item"
+  >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ displayNames[i] }}</th>
+    <td mat-cell *matCellDef="let row">
+      <span *ngIf="i == 0 || i == 2 || i == 3 || i == 4">
+        {{ row[item] ? row[item] : "-" }}
+      </span>
+      <span *ngIf="i == 1">{{ row[item] ? (row[item] | date) : "-" }}</span>
+      <span *ngIf="i == 5">
+        {{ row[item] ? (row[item] | tickToTime) : "0hr 0min" }}
+      </span>
+      <span *ngIf="i == 6">
+        {{ row.UserData[item] ? (row.UserData[item] | tickToTime) : "0min" }}
+      </span>
+      <span *ngIf="i == 7 || i == 8 || i == 9">
+        {{ row.UserData[item] }}
+      </span>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+</table>

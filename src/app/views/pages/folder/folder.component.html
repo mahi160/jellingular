@@ -1,42 +1,15 @@
 <div *ngIf="folderData$ | async as _folder" class="items">
   <h1>{{ _folder.Name }}</h1>
   <h3>Total {{ total }} {{ _folder.CollectionType | titlecase }}</h3>
-  <table
-    mat-table
-    #table
+  <!-- Movies Table -->
+  <app-movie-table
     [dataSource]="dataSource"
-    [hidden]="!(folderItem$ | async)"
-    matSort
-    class="mat-elevation-z8"
-  >
-    <ng-container
-      *ngFor="let item of displayColumns; let i = index"
-      [matColumnDef]="item"
-    >
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ item }}</th>
-      <td mat-cell *matCellDef="let row">
-        <span *ngIf="i == 0 || i == 2 || i == 3 || i == 4">
-          {{ row[item] ? row[item] : "-" }}
-        </span>
-        <span *ngIf="i == 1">{{ row[item] ? (row[item] | date) : "-" }}</span>
-        <span *ngIf="i == 5">
-          {{ row[item] ? (row[item] | tickToTime) : "0hr 0min" }}
-        </span>
-        <span *ngIf="i == 6">
-          {{
-            row.UserData[item] ? (row.UserData[item] | tickToTime) : "0hr 0min"
-          }}
-        </span>
-        <span *ngIf="i == 7 || i == 8 || i == 9">
-          {{ row.UserData[item] }}
-        </span>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
-  </table>
-  <!-- <mat-paginator
-    [pageSizeOptions]="pageOptions"
-    showFirstLastButtons
-  ></mat-paginator> -->
+    *ngIf="(folderItem$ | async) && _folder.CollectionType === 'movies'"
+  ></app-movie-table>
+
+  <!-- Series Table -->
+  <app-series-table
+    [dataSource]="dataSource"
+    *ngIf="(folderItem$ | async) && _folder.CollectionType === 'tvshows'"
+  ></app-series-table>
 </div>

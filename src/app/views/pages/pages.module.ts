@@ -4,6 +4,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../../shared/shared.module';
+import { LayoutsModule } from './../layouts/layouts.module';
 import { FolderComponent } from './folder/folder.component';
 import { HomeComponent } from './home/home.component';
 import { LoginCardComponent } from './login/login-card/login-card.component';
@@ -19,7 +20,7 @@ const Pages = [
 ];
 @NgModule({
   declarations: [Pages],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, LayoutsModule],
   exports: [Pages],
 })
 export class PagesModule {}

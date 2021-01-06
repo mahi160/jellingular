@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -14,22 +12,7 @@ import { UsersService } from './../../../services/users.service';
 export class FolderComponent implements OnInit {
   folderData$!: Observable<any>;
   folderItem$!: Observable<any>;
-  displayColumns = [
-    'Name',
-    'PremiereDate',
-    'OfficialRating',
-    'CommunityRating',
-    'ProductionYear',
-    'RunTimeTicks',
-    'PlaybackPositionTicks',
-    'PlayCount',
-    'Played',
-    'Key',
-  ];
-  pageOptions: number[] = [];
   dataSource!: MatTableDataSource<any>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
   total: any;
   constructor(
     private userService: UsersService,
@@ -41,16 +24,9 @@ export class FolderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.folderItem$
-      .subscribe((res) => {
-        for (let i = 0; i < Math.ceil(res.Items.length / 25); i++) {
-          this.pageOptions.push(25 * (i + 1));
-          console.log(this.pageOptions);
-        }
-        this.total = res.Items.length;
-        this.dataSource = new MatTableDataSource(res.Items);
-        // this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      })
+    this.folderItem$.subscribe((res) => {
+      this.total = res.Items.length;
+      this.dataSource = new MatTableDataSource(res.Items);
+    });
   }
 }
