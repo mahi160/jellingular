@@ -1,35 +1,35 @@
 <div *ngIf="folderData$ | async as _folder">
   <h1>{{ _folder.Name }}</h1>
-  <table *ngIf="folderItem$ | async as _items">
-    <thead>
-      <!-- <th>Image</th> -->
-      <th>ID</th>
-      <th>Name of the movie</th>
-      <th>PremiereDate</th>
-      <th>OfficialRating</th>
-      <th>CommunityRating</th>
-      <th>ProductionYear</th>
-      <th>RunTimeTicks</th>
-      <th>PlaybackPositionTicks</th>
-      <th>Played</th>
-      <th>Watched</th>
-      <th>Key</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of _items.Items">
-        <!-- <td><img [src]="['/Images/Primary?maxHeight=326&maxWidth=217&tag=adb2e3a177081a93ea1899dbdb96a126&quality=90']" alt=""></td> -->
-        <td>{{item.Id}}</td>
-        <td>{{ item.Name }}</td>
-        <td>{{ item.PremiereDate | date }}</td>
-        <td>{{ item.OfficialRating }}</td>
-        <td>{{ item.CommunityRating }}</td>
-        <td>{{ item.ProductionYear }}</td>
-        <td>{{ item.RunTimeTicks | tickToTime }}</td>
-        <td>{{ item.UserData.PlaybackPositionTicks | tickToTime }}</td>
-        <td>{{ item.UserData.PlayCount }} Times</td>
-        <td>{{ item.UserData.Played }}</td>
-        <td>{{ item.UserData.key }}</td>
-      </tr>
-    </tbody>
+  <table
+    mat-table
+    #table
+    [dataSource]="dataSource"
+    [hidden]="!(folderItem$ | async)"
+    matSort
+    class="mat-elevation-z8"
+  >
+    <ng-container
+      *ngFor="let item of displayColumns; let i = index"
+      [matColumnDef]="item"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ item }}</th>
+      <td mat-cell *matCellDef="let row">
+        <span *ngIf="i == 0 || i == 2 || i == 3 || i == 4">
+          {{ row[item] }}
+        </span>
+        <span *ngIf="i == 1">{{ row[item] | date }}</span>
+        <span *ngIf="i == 5">{{ row[item] | tickToTime }}</span>
+        <span *ngIf="i == 6">{{ row.UserData[item] | tickToTime }}</span>
+        <span *ngIf="i == 7 || i == 8 || i == 9">
+          {{ row.UserData[item] }}
+        </span>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
   </table>
+  <!-- <mat-paginator
+    [pageSizeOptions]="pageOptions"
+    showFirstLastButtons
+  ></mat-paginator> -->
 </div>

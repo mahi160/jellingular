@@ -10,6 +10,7 @@ import { UsersService } from './../../../services/users.service';
 })
 export class LoginComponent implements OnInit {
   users$!: Observable<any>;
+  logoUrl = 'http://192.168.31.103:8097/web/assets/img/banner-dark.png';
   manualLogin = false;
   constructor(
     private userService: UsersService,

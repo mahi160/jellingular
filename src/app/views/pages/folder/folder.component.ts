@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UsersService } from './../../../services/users.service';
@@ -11,7 +14,22 @@ import { UsersService } from './../../../services/users.service';
 export class FolderComponent implements OnInit {
   folderData$!: Observable<any>;
   folderItem$!: Observable<any>;
-
+  displayColumns = [
+    'Name',
+    'PremiereDate',
+    'OfficialRating',
+    'CommunityRating',
+    'ProductionYear',
+    'RunTimeTicks',
+    'PlaybackPositionTicks',
+    'PlayCount',
+    'Played',
+    'Key',
+  ];
+  pageOptions: number[] = [];
+  dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private userService: UsersService,
     private route: ActivatedRoute
@@ -21,5 +39,15 @@ export class FolderComponent implements OnInit {
     this.folderData$ = this.userService.folder(id);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.folderItem$.subscribe((res) => {
+      for (let i = 0; i < Math.ceil(res.Items.length / 25); i++) {
+        this.pageOptions.push(25 * (i + 1));
+        console.log(this.pageOptions);
+      }
+      this.dataSource = new MatTableDataSource(res.Items);
+      // this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
 }
