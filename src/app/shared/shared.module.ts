@@ -3,7 +3,7 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './../app-routing.module';
 import { PipesModule } from './../pipes/pipes.module';
 import { MaterialModule } from './material.module';
@@ -13,6 +13,7 @@ const Shared = [
   MaterialModule,
   PipesModule,
   ReactiveFormsModule,
+  FormsModule,
 ];
 @NgModule({
   declarations: [],

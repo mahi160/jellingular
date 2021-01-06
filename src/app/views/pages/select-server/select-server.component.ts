@@ -16,7 +16,7 @@ export class SelectServerComponent implements OnInit {
       Validators.required
     ),
   });
-  url = `/login/${this.server.controls.authApi.value}`;
+  logoUrl = 'http://192.168.31.103:8097/web/assets/img/banner-dark.png';
   constructor(private userService: UsersService) {}
 
   ngOnInit(): void {}
@@ -28,10 +28,5 @@ export class SelectServerComponent implements OnInit {
         ':' +
         this.server.controls.port.value
     );
-    // this.userService
-    //   .getAllUsers(this.server.controls.authApi.value)
-    //   .subscribe((res) => {
-    //     console.log(res);
-    //   });
   }
 }
